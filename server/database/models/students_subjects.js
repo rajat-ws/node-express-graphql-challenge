@@ -51,11 +51,11 @@ export function model(sequelize, DataTypes) {
   });
 
   studentsSubjects.associate = function(models) {
-    studentsSubjects.students = studentsSubjects.hasMany(models.students, {
+    studentsSubjects.students = studentsSubjects.hasOne(models.students, {
       foreignKey: 'id',
       sourceKey: 'studentId'
     });
-    studentsSubjects.subjects = studentsSubjects.hasMany(models.subjects, {
+    studentsSubjects.subjects = studentsSubjects.hasOne(models.subjects, {
       foreignKey: 'id',
       sourceKey: 'subjectId'
     });

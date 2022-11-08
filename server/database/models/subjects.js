@@ -41,6 +41,12 @@ export function model(sequelize, DataTypes) {
       foreignKey: 'subject_id',
       sourceKey: 'id'
     });
+
+    subjects.students = subjects.belongToMany(models.students, {
+      through: models.studentsSubjects,
+      sourceKey: 'id',
+      otherKey: 'student_id'
+    });
   };
 
   return subjects;

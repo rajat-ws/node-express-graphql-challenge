@@ -1,6 +1,6 @@
 CREATE TABLE students_subjects
 (
-    id serial NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     student_id integer NOT NULL,
     subject_id integer NOT NULL,
     created_at timestamp
@@ -13,3 +13,5 @@ CREATE TABLE students_subjects
     CONSTRAINT students_subjects_subject_id FOREIGN KEY (subject_id) REFERENCES subjects(id)
 );
 
+CREATE INDEX student_id ON students_subjects USING btree (student_id)
+CREATE INDEX subject_id ON students_subjects USING btree (subject_id)
