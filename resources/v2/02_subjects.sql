@@ -12,7 +12,6 @@ CREATE TABLE subjects
     WITH time zone
 );
 
-CREATE INDEX subjects_id ON USING btree (id)
 CREATE INDEX subjects_name ON USING btree (name)
 CREATE INDEX subjects_kind ON USING btree (kind)
 

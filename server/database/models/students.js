@@ -10,6 +10,14 @@ export function getAttributes(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    city: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     createdAt: {
       field: 'created_at',
       type: DataTypes.DATE,
