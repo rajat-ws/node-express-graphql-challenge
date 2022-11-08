@@ -1,0 +1,2 @@
+ALTER TABLE students
+ADD COLUMN city text NOT NULL;
