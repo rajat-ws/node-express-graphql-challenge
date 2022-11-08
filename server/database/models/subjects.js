@@ -42,7 +42,7 @@ export function model(sequelize, DataTypes) {
       sourceKey: 'id'
     });
 
-    subjects.students = subjects.belongToMany(models.students, {
+    subjects.students = subjects.belongsToMany(models.students, {
       through: models.studentsSubjects,
       sourceKey: 'id',
       otherKey: 'student_id'
