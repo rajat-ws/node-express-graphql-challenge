@@ -14,6 +14,5 @@ CREATE TABLE students
     WITH time zone
 );
 
-CREATE INDEX students_name ON students USING btree (name)
 CREATE INDEX students_city ON students USING btree (city)
 

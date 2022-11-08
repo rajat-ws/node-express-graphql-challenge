@@ -15,5 +15,5 @@ CREATE TABLE students_subjects
     CONSTRAINT student_subjects_unique_fkeys UNIQUE (student_id, subject_id);
 );
 
-CREATE INDEX student_id ON students_subjects USING btree (student_id)
-CREATE INDEX subject_id ON students_subjects USING btree (subject_id)
+CREATE INDEX idx_student_subjects_student_id ON students_subjects USING btree (student_id)
+CREATE INDEX idx_student_subjects_subject_id ON students_subjects USING btree (subject_id)

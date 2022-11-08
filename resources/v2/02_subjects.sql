@@ -2,7 +2,6 @@ CREATE TABLE subjects
 (
     id SERIAL NOT NULL PRIMARY KEY,
     name text NOT NULL,
-    kind text NOT NULL,
     
     created_at timestamp
     WITH time zone DEFAULT NOW(),
@@ -13,5 +12,4 @@ CREATE TABLE subjects
 );
 
 CREATE INDEX subjects_name ON USING btree (name)
-CREATE INDEX subjects_kind ON USING btree (kind)
 
