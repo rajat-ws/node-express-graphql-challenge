@@ -15,7 +15,7 @@ export function getAttributes(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    subjectsId: {
+    subjectId: {
       field: 'subject_id',
       type: DataTypes.INTEGER,
       allowNull: false,
