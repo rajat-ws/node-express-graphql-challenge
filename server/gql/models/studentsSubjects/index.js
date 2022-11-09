@@ -38,7 +38,7 @@ export const StudentsSubjectsConnection = createConnection({
 });
 
 // queries
-export const StudentsSubjectsQueries = {
+export const studentsSubjectQueries = {
   args: {
     id: {
       type: new GraphQLNonNull(GraphQLInt)
@@ -55,7 +55,7 @@ export const StudentsSubjectsQueries = {
   model: db.studentsSubjects
 };
 
-export const subjectMutations = {
+export const studentsSubjectMutations = {
   args: studentsSubjectsFields,
   type: StudentsSubjectsType,
   model: db.studentsSubjects

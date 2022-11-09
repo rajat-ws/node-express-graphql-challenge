@@ -28,5 +28,6 @@ export const getGqlModels = ({ type, blacklist }) => {
     const name = pluralize.singular(f.split('/')[0].split('.')[0]);
     DB_TABLES[name] = gqlModel[`${name}${type}`];
   });
+
   return DB_TABLES;
 };
