@@ -24,7 +24,9 @@ export const SubjectType = new GraphQLObjectType({
     ...timestamps,
     students: {
       type: StudentConnection.connectionType,
-      args: StudentConnection.connectionArgs
+      args: StudentConnection.connectionArgs,
+      resolve: (source, args, context, info) =>
+        StudentConnection.resolve(source, args, { ...context, subject: source.dataValues }, info)
     }
   })
 });
@@ -36,6 +38,15 @@ export const SubjectConnection = createConnection({
   before: (findOptions, args, context) => {
     findOptions.include = findOptions.include || [];
     findOptions.where = sequelizedWhere(findOptions.where, args.where);
+
+    if (context?.student?.id) {
+      findOptions.include.push({
+        model: db.studentsSubjects,
+        where: {
+          studentId: context.student.id
+        }
+      });
+    }
 
     return findOptions;
   },
