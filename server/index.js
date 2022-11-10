@@ -70,7 +70,7 @@ export const init = async () => {
   app.get('/', (req, res) => {
     const message = 'Service up and running!';
     sendMessage(message);
-    logger().info(message);
+    // logger().info(message);
     res.json({ data: message });
   });
 
