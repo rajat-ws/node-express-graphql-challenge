@@ -5,7 +5,7 @@ import { totalConnectionFields } from '@server/utils';
 import db from '@database/models';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 import { timestamps } from '../timestamps';
-import { SubjectConnection } from '../subjects';
+import { subjectQueries } from '../subjects';
 
 const { getNode } = require('@gql/node');
 const { nodeInterface } = getNode();
@@ -25,10 +25,9 @@ export const StudentType = new GraphQLObjectType({
     ...getQueryFields(studentsFields, TYPE_ATTRIBUTES.isNonNull),
     ...timestamps,
     subjects: {
-      type: SubjectConnection.connectionType,
-      args: SubjectConnection.connectionArgs,
+      ...subjectQueries.list,
       resolve: (source, args, context, info) =>
-        SubjectConnection.resolve(source, args, { ...context, student: source.dataValues }, info)
+        subjectQueries.list.resolve(source, args, { ...context, student: source.dataValues }, info)
     }
   })
 });
@@ -42,7 +41,7 @@ export const StudentConnection = createConnection({
     findOptions.where = sequelizedWhere(findOptions.where, args.where);
 
     if (context?.subject?.id) {
-      findOptions.include({
+      findOptions.include.push({
         model: db.studentsSubjects,
         where: {
           subjectId: context.subject.id

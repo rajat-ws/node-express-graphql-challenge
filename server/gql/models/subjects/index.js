@@ -5,7 +5,7 @@ import { totalConnectionFields } from '@server/utils';
 import db from '@database/models';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 import { timestamps } from '../timestamps';
-import { StudentConnection } from '../students';
+import { studentQueries } from '../students';
 
 const { getNode } = require('@gql/node');
 const { nodeInterface } = getNode();
@@ -23,10 +23,9 @@ export const SubjectType = new GraphQLObjectType({
     ...getQueryFields(subjectsFields, TYPE_ATTRIBUTES.isNonNull),
     ...timestamps,
     students: {
-      type: StudentConnection.connectionType,
-      args: StudentConnection.connectionArgs,
+      ...studentQueries.list,
       resolve: (source, args, context, info) =>
-        StudentConnection.resolve(source, args, { ...context, subject: source.dataValues }, info)
+        studentQueries.list.resolve(source, args, { ...context, subject: source.dataValues }, info)
     }
   })
 });
