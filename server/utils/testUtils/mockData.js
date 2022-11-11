@@ -71,7 +71,7 @@ export const studentsTable = range(1, 10).map((_, index) => ({
 
 export const subjectsTable = range(1, 10).map((_, index) => ({
   id: (index + 1).toString(),
-  name: faker.name.firstName()
+  name: faker.commerce.productName()
 }));
 
 export const studentSubjectsTable = range(1, 10).map((_, index) => ({
