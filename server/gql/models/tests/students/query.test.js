@@ -23,7 +23,7 @@ describe('Student graphql-server-DB query tests', () => {
       }
     `;
 
-  it('should return all the fields of student to check if all the returning values match te correct values assosciated with studentId', async () => {
+  it('should return all the fields of student to check if all the returning values match the correct values assosciated with studentId', async () => {
     const dbClient = mockDBClient();
     resetAndMockDB(null, {}, dbClient);
 
