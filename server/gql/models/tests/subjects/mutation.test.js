@@ -60,7 +60,7 @@ describe('Subject graphQL-server-DB mutation tests', () => {
   });
 
   // delete
-  const deleteSubjecttMutation = `
+  const deleteSubjectMutation = `
    mutation {
      deleteSubject (
        id: ${subjectsTable[0].id},
@@ -71,7 +71,7 @@ describe('Subject graphQL-server-DB mutation tests', () => {
  `;
 
   it('should have a mutation to delete a subject', async () => {
-    const response = await getResponse(deleteSubjecttMutation);
+    const response = await getResponse(deleteSubjectMutation);
     const result = get(response, 'body.data.deleteSubject');
     expect(result).toEqual(
       expect.objectContaining({
