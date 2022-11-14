@@ -10,7 +10,7 @@ import {
   supplierProductsTable,
   suppliersTable,
   subjectsTable,
-  studentSubjectsTable
+  studentsSubjectsTable
 } from '@server/utils/testUtils/mockData';
 import sequelize from 'sequelize';
 import request from 'supertest';
@@ -136,10 +136,11 @@ export function mockDBClient(config = { total: 10 }) {
   const studentSubjectsMock = defineAndAddAttributes(
     dbConnectionMock,
     'studentSubjects',
-    studentSubjectsTable[0],
+    studentsSubjectsTable[0],
     require('@database/models/students_subjects').getAttributes(sequelize, sequelize.DataTypes),
     config.total
   );
+
   return {
     client: dbConnectionMock,
     models: {
