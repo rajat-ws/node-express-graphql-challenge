@@ -38,4 +38,45 @@ describe('Subject graphQL-server-DB mutation tests', () => {
       name: subjectsTable[0].name
     });
   });
+
+  // update
+  const updateSubjectMutation = `
+    mutation {
+      updateSubject (
+        id: ${subjectsTable[0].id},
+        name: "${subjectsTable[0].name}",
+      ) {
+        id
+      }
+    }
+  `;
+
+  it('should have a mutation to update a subject', async () => {
+    const response = await getResponse(updateSubjectMutation);
+    const result = get(response, 'body.data.updateSubject');
+    expect(result).toMatchObject({
+      id: '1'
+    });
+  });
+
+  // delete
+  const deleteSubjecttMutation = `
+   mutation {
+     deleteSubject (
+       id: ${subjectsTable[0].id},
+     ) {
+       id
+     }
+   }
+ `;
+
+  it('should have a mutation to delete a subject', async () => {
+    const response = await getResponse(deleteSubjecttMutation);
+    const result = get(response, 'body.data.deleteSubject');
+    expect(result).toEqual(
+      expect.objectContaining({
+        id: 1
+      })
+    );
+  });
 });
