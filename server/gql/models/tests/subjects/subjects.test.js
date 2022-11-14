@@ -34,4 +34,12 @@ describe('Subject introspection tests', () => {
     const hasCorrectFieldTypes = expectSameTypeNameOrKind(subjectFieldTypes, fields);
     expect(hasCorrectFieldTypes).toBeTruthy();
   });
+
+  it('should have a students connection', () => {
+    const result = graphqlSync({ schema, source: query });
+    const subjectFieldTypes = get(result, 'data.__type.fields');
+    const studentField = subjectFieldTypes.find(field => field.name === 'students');
+    expect(studentField.type.kind).toBe('OBJECT');
+    expect(studentField.type.name).toBe('StudentConnection');
+  });
 });
