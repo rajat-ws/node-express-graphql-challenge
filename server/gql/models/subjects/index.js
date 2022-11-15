@@ -6,7 +6,6 @@ import db from '@database/models';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 import { timestamps } from '../timestamps';
 import { studentQueries } from '../students';
-import { limitOffset } from '../../limitOffset';
 
 const { getNode } = require('@gql/node');
 const { nodeInterface } = getNode();
@@ -66,8 +65,7 @@ export const subjectQueries = {
   list: {
     ...SubjectConnection,
     type: SubjectConnection.connectionType,
-    args: SubjectConnection.connectionArgs,
-    ...limitOffset
+    args: SubjectConnection.connectionArgs
   },
   model: db.subjects
 };
