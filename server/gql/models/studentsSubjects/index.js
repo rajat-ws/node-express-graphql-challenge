@@ -1,6 +1,5 @@
 import { GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType } from 'graphql';
 import { createConnection } from 'graphql-sequelize';
-import { sequelizedWhere } from '@server/database/dbUtils';
 import { totalConnectionFields } from '@server/utils';
 import db from '@database/models';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
@@ -29,11 +28,6 @@ export const StudentsSubjectsConnection = createConnection({
   nodeType: StudentsSubjectsType,
   name: 'StudentsSubjects',
   target: db.studentsSubjects,
-  before: (findOptions, args, context) => {
-    findOptions.include = findOptions.include || [];
-    findOptions.where = sequelizedWhere(findOptions.where, args.where);
-    return findOptions;
-  },
   ...totalConnectionFields
 });
 
