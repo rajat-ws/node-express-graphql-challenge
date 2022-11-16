@@ -28,7 +28,7 @@ const query = `
   }
 `;
 
-describe('Studnets Subjects introspection tests', () => {
+describe('Students Subjects introspection tests', () => {
   it('should have the correct fields and types', async () => {
     const result = await graphqlSync({ schema, source: query });
     const studentsSubjectsFieldTypes = get(result, 'data.__type.fields');
