@@ -3,7 +3,7 @@ services:
   db_postgres:
     image: postgres
     ports:
-      - 5433:5433
+      - 5432:5432
     restart: always
     env_file:
       - .env.docker
@@ -24,6 +24,6 @@ services:
     ports:
       - 9000:9000
     env_file:
-      - .env.docker
+      - ./.env.docker
     environment:
       ENVIRONMENT_NAME: 'docker'
