@@ -1,0 +1,43 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:511522223657:task-definition/rajat-backend-training:1",
+  "containerDefinitions": [
+    {
+      "name": "rajat-backend-training",
+      "image": "511522223657.dkr.ecr.ap-south-1.amazonaws.com/rajat-backend-training",
+      "cpu": 0,
+      "portMappings": [],
+      "essential": true,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": []
+    }
+  ],
+  "family": "rajat-backend-training",
+  "executionRoleArn": "arn:aws:iam::511522223657:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": ["EC2", "FARGATE"],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "3072",
+  "registeredAt": "2022-11-17T12:21:15.837Z",
+  "registeredBy": "arn:aws:iam::511522223657:user/Rajat",
+  "tags": []
+}
