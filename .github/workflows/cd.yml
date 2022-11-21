@@ -48,7 +48,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition/${{steps.vars.outputs.stage}}.json #1
-          container-name: rajat-backend-training-${{steps.vars.outputs.stage}} #2
+          container-name: rajat-backend-training #2
           image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_REPOSITORY }}:${{ github.sha }}
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
