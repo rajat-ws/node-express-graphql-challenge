@@ -54,8 +54,8 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.rajat-backend-training.outputs.task-definition }}
-          service: rajat-backend-training-${{ steps.vars.outputs.stage }}
-          cluster: rajat-backend-training-${{ steps.vars.outputs.stage }}
+          service: rajat-backend-training-svc
+          cluster: rajat-backend-training
       - name: Logout of Amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
