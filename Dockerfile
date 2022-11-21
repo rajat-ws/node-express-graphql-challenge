@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:16
 ARG ENVIRONMENT_NAME
 RUN mkdir -p /app-build
 ADD . /app-build
@@ -7,7 +7,7 @@ RUN yarn
 RUN yarn build:${ENVIRONMENT_NAME}
 
 
-FROM node:14-alpine
+FROM node:16-alpine
 ARG ENVIRONMENT_NAME
 ENV ENVIRONMENT_NAME $ENVIRONMENT_NAME
 RUN mkdir -p /dist
@@ -21,4 +21,4 @@ COPY --from=0 /app-build/dist ./dist
 
 
 CMD ["sh", "./migrate-and-run.sh"]
-EXPOSE 9000
+EXPOSE 9001
