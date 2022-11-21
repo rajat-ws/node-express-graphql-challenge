@@ -17,12 +17,13 @@ jobs:
         run: echo ::set-output name=stage::${GITHUB_REF#refs/*/}
       - name: Set env.ENVIRONMENT_NAME
         run: |
-          if [[ ${{ steps.vars.outputs.stage }} == 'master' ]]; then
-              echo "ENVIRONMENT_NAME=production" >> "$GITHUB_ENV"
-          else if [[ ${{ steps.vars.outputs.stage }} == 'qa' ]]; then
+          if [[ ${{ steps.vars.outputs.stage }} == 'develop' ]]; then
+              echo "ENVIRONMENT_NAME=docker" >> "$GITHUB_ENV"
+          elif [[ ${{ steps.vars.outputs.stage }} == 'qa' ]]; then
               echo "ENVIRONMENT_NAME=qa" >> "$GITHUB_ENV"
           else 
               echo "ENVIRONMENT_NAME=development" >> "$GITHUB_ENV"
+          fi
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
