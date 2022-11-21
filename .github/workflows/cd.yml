@@ -42,7 +42,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . --build-arg ENVIRONMENT_NAME=${{secrets.ENVIRONMENT_NAME}}
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG3
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       - name: Render Amazon ECS task definition
         id: rajat-backend-training
         uses: aws-actions/amazon-ecs-render-task-definition@v1
