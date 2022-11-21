@@ -17,7 +17,7 @@ jobs:
         run: echo ::set-output name=stage::${GITHUB_REF#refs/*/}
       - name: Set env.ENVIRONMENT_NAME
         run: |
-          if [[ ${{ steps.vars.outputs.stage }} == 'develop' ]]; then
+          if [[ ${{ steps.vars.outputs.stage }} == 'master' ]]; then
               echo "ENVIRONMENT_NAME=docker" >> "$GITHUB_ENV"
           else if [[ ${{ steps.vars.outputs.stage }} == 'qa' ]]; then
               echo "ENVIRONMENT_NAME=qa" >> "$GITHUB_ENV"
