@@ -5,7 +5,13 @@
       "name": "rajat-backend-training",
       "image": "511522223657.dkr.ecr.ap-south-1.amazonaws.com/rajat-backend-training",
       "cpu": 0,
-      "portMappings": [],
+      "portMappings": [
+        {
+          "hostPort": 9001,
+          "protocol": "tcp",
+          "containerPort": 9001
+        }
+      ],
       "essential": true,
       "environment": [],
       "mountPoints": [],
