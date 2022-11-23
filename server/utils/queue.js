@@ -23,7 +23,7 @@ export const QUEUE_PROCESSORS = {
 };
 
 // const CRON_EXPRESSIONS = {
-//   MIDNIGHT: '0 0 * * *'
+//   MIDNIGHT: '0 0 * * *getEarliestCreatedDate'
 // };
 
 export const initQueues = () => {
