@@ -96,8 +96,8 @@ export const init = async () => {
     ['SIGINT', 'SIGTERM'].forEach(signal => {
       process.on(signal, () => subscriptionServer.close());
     });
-    httpServer.listen(9000, () => {
-      console.log(`Server is now running on http://localhost:9000/graphql`);
+    httpServer.listen(9001, () => {
+      console.log(`Server is now running on http://localhost:9001/graphql`);
     });
     initQueues();
   }
