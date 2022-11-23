@@ -22,9 +22,9 @@ export const QUEUE_PROCESSORS = {
   }
 };
 
-// const CRON_EXPRESSIONS = {
-//   MIDNIGHT: '0 0 * * *getEarliestCreatedDate'
-// };
+const CRON_EXPRESSIONS = {
+  MIDNIGHT: '0 0 * * *'
+};
 
 export const initQueues = () => {
   console.log('init queues');
@@ -32,7 +32,7 @@ export const initQueues = () => {
     queues[queueName] = getQueue(queueName);
     queues[queueName].process(QUEUE_PROCESSORS[queueName]);
   });
-  // queues[QUEUE_NAMES.AGGREGATE_CHECK].add({}, { repeat: { cron: CRON_EXPRESSIONS.MIDNIGHT } });
+  queues[QUEUE_NAMES.AGGREGATE_CHECK].add({}, { repeat: { cron: CRON_EXPRESSIONS.MIDNIGHT } });
 };
 export const getQueue = queueName => {
   if (!queues[queueName]) {
