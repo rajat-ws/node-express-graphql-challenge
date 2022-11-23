@@ -15,6 +15,15 @@ jobs:
       - name: Get branch name
         id: vars
         run: echo ::set-output name=stage::${GITHUB_REF#refs/*/}
+      - name: Set env.ENVIRONMENT_NAME
+        run: |
+          if [[ ${{ steps.vars.outputs.stage }} == 'master' ]]; then
+              echo "ENVIRONMENT_NAME=production" >> "$GITHUB_ENV"
+          else if [[ ${{ steps.vars.outputs.stage }} == 'qa' ]]; then
+              echo "ENVIRONMENT_NAME=qa" >> "$GITHUB_ENV"
+          else 
+              echo "ENVIRONMENT_NAME=development" >> "$GITHUB_ENV"
+          fi
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -32,7 +41,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . --build-arg ENVIRONMENT_NAME=${{secrets.ENVIRONMENT_NAME}}
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       - name: Render Amazon ECS task definition
         id: rajat-backend-training
@@ -45,7 +54,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.rajat-backend-training.outputs.task-definition }}
-          service: rajat-backend-service
+          service: rajat-backend-training
           cluster: rajat-backend-training
       - name: Logout of Amazon ECR
         if: always()

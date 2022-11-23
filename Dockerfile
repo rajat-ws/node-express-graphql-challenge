@@ -21,4 +21,4 @@ COPY --from=0 /app-build/dist ./dist
 
 
 CMD ["sh", "./migrate-and-run.sh"]
-EXPOSE 9001
+EXPOSE 9000
