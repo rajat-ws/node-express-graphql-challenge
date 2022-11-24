@@ -49,7 +49,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.rajat-backend-new.outputs.task-definition }}
-          service: rajat-backend-final
+          service: rajat-backend-final-svc
           cluster: rajat-backend-new
       - name: Logout of Amazon ECR
         if: always()

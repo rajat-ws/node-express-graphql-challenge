@@ -61,7 +61,7 @@
   "memory": "2048",
   "taskRoleArn": "arn:aws:iam::511522223657:role/ecsTaskExecutionRole",
   "compatibilities": ["EC2", "FARGATE"],
-  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:511522223657:task-definition/rajat-backend-final:3",
+  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:511522223657:task-definition/rajat-backend-final:4",
   "family": "rajat-backend-final",
   "requiresAttributes": [
     {
