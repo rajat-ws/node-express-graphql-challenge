@@ -48,7 +48,7 @@ jobs:
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.rajat-backend-final.outputs.task-definition }}
+          task-definition: ${{ steps.rajat-backend-final-container.outputs.task-definition }}
           service: rajat-backend-final
           cluster: rajat-backend-new
       - name: Logout of Amazon ECR
