@@ -58,7 +58,7 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "512",
+  "memory": "2048",
   "taskRoleArn": "arn:aws:iam::511522223657:role/ecsTaskExecutionRole",
   "compatibilities": ["EC2", "FARGATE"],
   "taskDefinitionArn": "arn:aws:ecs:ap-south-1:511522223657:task-definition/rajat-backend-training:10",
@@ -117,7 +117,7 @@
   "requiresCompatibilities": ["FARGATE"],
   "networkMode": "awsvpc",
   "runtimePlatform": null,
-  "cpu": "256",
+  "cpu": "1024",
   "revision": 10,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
