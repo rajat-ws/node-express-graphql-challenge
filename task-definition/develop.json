@@ -37,7 +37,7 @@
       "memoryReservation": 500,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "511522223657.dkr.ecr.ap-south-1.amazonaws.com/rajat-backend-training:b3d087d0ae62772d1e366af4cdf5a39528db2977",
+      "image": "",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
