@@ -36,8 +36,15 @@ export const initQueues = () => {
 };
 export const getQueue = queueName => {
   if (!queues[queueName]) {
-    queues[queueName] = new Bull(queueName, `redis://${process.env.REDIS_DOMAIN}:${process.env.REDIS_PORT}`);
-    console.log('created queue: ', queueName, `redis://${process.env.REDIS_DOMAIN}:${process.env.REDIS_PORT}`);
+    queues[queueName] = new Bull(
+      queueName,
+      `redis://${process.env.REDIS_DOMAIN || process.env.REDIS_URL}:${process.env.REDIS_PORT}`
+    );
+    console.log(
+      'created queue: ',
+      queueName,
+      `redis://${process.env.REDIS_URL || process.env.REDIS_DOMAIN}:${process.env.REDIS_PORT}`
+    );
   }
   return queues[queueName];
 };

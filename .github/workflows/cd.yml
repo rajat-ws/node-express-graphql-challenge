@@ -1,6 +1,10 @@
 name: Node Express GraphQL Template CD
 
 on:
+  pull_request:
+    branches:
+      - develop
+
   push:
     branches:
       - develop
@@ -32,21 +36,21 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . --build-arg ENVIRONMENT_NAME=${{secrets.ENVIRONMENT_NAME}}
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . --build-arg ENVIRONMENT_NAME=development
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       - name: Render Amazon ECS task definition
-        id: rajat-backend-training
+        id: rajat-backend-new
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: task-definition/${{steps.vars.outputs.stage}}.json #1
-          container-name: rajat-backend-training #2
+          task-definition: task-definition/develop.json #1
+          container-name: rajat-backend-final-container #2
           image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_REPOSITORY }}:${{ github.sha }}
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ steps.rajat-backend-training.outputs.task-definition }}
-          service: rajat-backend-training-svc
-          cluster: rajat-backend-training
+          task-definition: ${{ steps.rajat-backend-new.outputs.task-definition }}
+          service: rajat-backend-final-svc
+          cluster: rajat-backend-new
       - name: Logout of Amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
